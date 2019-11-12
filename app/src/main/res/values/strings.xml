@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">QuizApp</string>
+    <string name="main_menu_button_quizuj">Quizuj!</string>
+    <string name="main_menu_button_zestawy" >Zestawy pytań</string>
+    <string name="main_menu_button_ustawienia" >Ustawienia</string>
 </resources>

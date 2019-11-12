@@ -9,7 +9,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("test_log", "testing new branch")
         setContentView(R.layout.activity_main)
-        Log.d("test_log", "testing new branch");
+
     }
 }
