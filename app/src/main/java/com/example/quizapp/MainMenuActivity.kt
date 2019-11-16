@@ -21,7 +21,7 @@ class MainMenuActivity : AppCompatActivity() {
 
     fun openSelectQuestionsSetActivity(view: View)
     {
-        val intent = Intent(this,SelectQuestionsSetActivity::class.java).apply {  }
+        val intent = Intent(this,SelectQuestionsSetActivity::class.java)
         startActivity(intent)
 
     }
