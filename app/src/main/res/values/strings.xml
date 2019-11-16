@@ -3,4 +3,7 @@
     <string name="main_menu_button_quizuj">Quizuj!</string>
     <string name="main_menu_button_zestawy">Zestawy pytań</string>
     <string name="main_menu_button_ustawienia">Ustawienia</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
