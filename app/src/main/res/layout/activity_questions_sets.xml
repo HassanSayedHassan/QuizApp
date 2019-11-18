@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectQuestionsSetActivity"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    tools:context=".QuestionsSetsActivity">
 
     <fragment
-        android:id="@+id/select_questions_sets_fragment"
+        android:id="@+id/questions_sets_fragment"
         android:name="com.example.quizapp.QuestionsSetListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"

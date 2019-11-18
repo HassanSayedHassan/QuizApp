@@ -4,8 +4,6 @@ package com.example.quizapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-
-
 class SelectQuestionsSetActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

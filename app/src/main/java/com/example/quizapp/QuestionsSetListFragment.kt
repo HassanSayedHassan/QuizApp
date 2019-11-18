@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.lang.Exception
 
 
 private const val ARG_PARAM1 = "param1"
@@ -28,38 +27,58 @@ class QuestionsSetListFragment : Fragment() {
 
     val arr = arrayOf(QuestionsSet("test1"), QuestionsSet("test2"),QuestionsSet("test3"))
 
+    val questionDatabase =
+        arrayOf(QuestionsSet("zestaw1"),
+            QuestionsSet("zestaw2"),
+            QuestionsSet("Zestaw3"),
+            QuestionsSet("zestaw4"),
+            QuestionsSet("zestaw5"),
+            QuestionsSet("zestaw6")
+        )
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        try {
+
             super.onCreate(savedInstanceState)
 
             arguments?.let {
                 param1 = it.getString(ARG_PARAM1)
                 param2 = it.getString(ARG_PARAM2)
             }
-        }
-        catch(e: Exception)
-        {
-            Log.d("EXCEPTION", e.message)
-        }
+
+        questionDatabase[0].addQuestion(Question("q1"))
+        questionDatabase[0].addQuestion(Question("q2"))
+        questionDatabase[0].addQuestion(Question("q3"))
+        questionDatabase[0].addQuestion(Question("q4"))
+        questionDatabase[0].addQuestion(Question("q5"))
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_questions_set_list, container, false)
-
         viewManager = LinearLayoutManager(context)
-        viewAdapter = QuestionsSetListAdapter(arr);
-
-        recyclerView = view.findViewById<RecyclerView>(R.id.select_qs_recycler).apply {
+        viewAdapter = QuestionsSetListAdapter(questionDatabase)
+        recyclerView = view.findViewById<RecyclerView>(R.id.questions_sets_recycler).apply {
             layoutManager = viewManager
             adapter = viewAdapter
 
         }
 
-
-
         return view
     }
+
+    fun setOnClickListener(onClickListener: QuestionsSetListAdapter.OnClickListener)
+    {
+       val adapter = viewAdapter as QuestionsSetListAdapter
+        adapter.setOnClickListener(onClickListener)
+    }
+
+    fun setOnLongClickListener(onLongClickListener: QuestionsSetListAdapter.OnLongClickListener)
+    {
+        val adapter = viewAdapter as QuestionsSetListAdapter
+        adapter.setOnLongClickListener(onLongClickListener)
+    }
+
 
 
 }
