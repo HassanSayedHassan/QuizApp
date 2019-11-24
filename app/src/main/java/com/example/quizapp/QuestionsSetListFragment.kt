@@ -1,5 +1,6 @@
 package com.example.quizapp
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.io.File
 
 
 private const val ARG_PARAM1 = "param1"
@@ -19,7 +21,7 @@ class QuestionsSetListFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     //private var listener: OnFragmentInteractionListener? = null
-
+    private val files = activity?.fileList()
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -77,6 +79,34 @@ class QuestionsSetListFragment : Fragment() {
     {
         val adapter = viewAdapter as QuestionsSetListAdapter
         adapter.setOnLongClickListener(onLongClickListener)
+    }
+
+    fun readSets(view: View):Array<QuestionsSet?>
+    {
+        var n=0
+        if(files?.size!=null)
+        {
+            n=files?.size
+        }
+        val result= arrayOfNulls<QuestionsSet>(n)
+        var i=0
+        while(i<n)
+        {
+            var name=""
+            if(files?.get(i)!=null)
+            {
+            name=files[i]
+            }
+            val file = File(activity?.filesDir, name)
+
+            val jsonString:String= file.readText(Charsets.UTF_8)
+            val reader:QuizReader= QuizReader()
+            val newSet:QuestionsSet=reader.read(jsonString)
+            result[i]=newSet
+            i++
+        }
+
+        return result
     }
 
 

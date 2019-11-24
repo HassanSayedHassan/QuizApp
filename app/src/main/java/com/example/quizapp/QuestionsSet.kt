@@ -4,7 +4,7 @@ import android.net.Uri
 
 class QuestionsSet(var name: String)
 {
-    private val questions: MutableList<Question> = mutableListOf<Question>()
+    val questions: MutableList<Question> = mutableListOf<Question>()
     var image: Uri?=null
     private var progress:QuestionSetProgress = QuestionSetProgress()
 
