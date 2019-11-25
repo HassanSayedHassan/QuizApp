@@ -1,7 +1,9 @@
 package com.example.quizapp
 
 
+import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,22 +17,31 @@ class QuestionsListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+    private var questionsSet:QuestionsSet = QuestionsSet()
+    private val quizReader = QuizReader()
 
 
-    private val arr = arrayOf(Question("pytanie1"),
-        Question("pytanie2"),
-        Question("pytanie3"),
-        Question("pytanie4"),
-        Question("pytanie5"),
-        Question("pytanie6"),
-        Question("pytanie7"))
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val index = activity?.intent?.getIntExtra("index",-1)
+        if(index != null && index > -1)
+        {
+            questionsSet = quizReader.readSets(activity as Activity)[index]
+        }
+
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+
+
+
+
 
         val view = inflater.inflate(R.layout.fragment_questions_list, container, false)
 
         viewManager = LinearLayoutManager(context)
-        viewAdapter = QuestionsListAdapter(arr)
+        viewAdapter = QuestionsListAdapter(questionsSet)
 
         recyclerView = view.findViewById<RecyclerView>(R.id.questions_list_recycler).apply {
             layoutManager = viewManager

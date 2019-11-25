@@ -5,9 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 
-class QuestionsListAdapter(private val questionsList :Array<Question>):
+class QuestionsListAdapter(private var questionsSet :QuestionsSet):
     RecyclerView.Adapter<QuestionsListAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view)
@@ -21,13 +20,15 @@ class QuestionsListAdapter(private val questionsList :Array<Question>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = questionsList[position].content
+
+        holder.textView.text = questionsSet.getQuestion(position).content
 
 
     }
 
     override fun getItemCount(): Int {
-        return  questionsList.size
+
+            return questionsSet.size()
     }
 
 }

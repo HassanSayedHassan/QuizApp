@@ -2,6 +2,7 @@ package com.example.quizapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 class QuestionsListActivity : AppCompatActivity() {
 

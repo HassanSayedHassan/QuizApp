@@ -35,7 +35,7 @@ class QuestionsSetsActivity : AppCompatActivity() {
 
     fun goToQuestionsList(index: Int)
     {
-        val intent = Intent(this,QuestionsListActivity::class.java).apply { index }
+        val intent = Intent(this,QuestionsListActivity::class.java).putExtra("index",index)
         startActivity(intent)
     }
     fun openQuestionsSetSubmenu(index: Int)

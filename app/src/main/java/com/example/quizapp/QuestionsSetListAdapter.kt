@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class QuestionsSetListAdapter(private val questionsSetList :Array<QuestionsSet>):
+class QuestionsSetListAdapter(private var questionsSetList :ArrayList<QuestionsSet>):
     RecyclerView.Adapter<QuestionsSetListAdapter.ViewHolder>() {
 
 
@@ -67,6 +67,9 @@ class QuestionsSetListAdapter(private val questionsSetList :Array<QuestionsSet>)
     {
         this.onLongClickListener = onLongClickListener
     }
-
+    fun setDataSet(questionsSetList: ArrayList<QuestionsSet>)
+    {
+        this.questionsSetList= questionsSetList
+    }
 
 }
