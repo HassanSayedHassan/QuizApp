@@ -4,8 +4,8 @@ open class Question(val content:String)
 {
 
 
-    val ans: MutableList<String> = mutableListOf<String>()
-    val correct: MutableList<Int> = mutableListOf<Int>()
+    var ans: MutableList<String> = mutableListOf<String>()
+    var correct: MutableList<Int> = mutableListOf<Int>()
 
 
 
