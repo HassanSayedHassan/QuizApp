@@ -9,39 +9,47 @@ class QuestionsSetsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_questions_sets)
-
-
 
 
     }
 
     override fun onResume() {
         super.onResume()
-        val fragment = supportFragmentManager.findFragmentById(R.id.questions_sets_fragment) as QuestionsSetListFragment
+        val fragment =
+            supportFragmentManager.findFragmentById(R.id.questions_sets_fragment) as QuestionsSetListFragment
 
-        fragment.setOnClickListener(object : QuestionsSetListAdapter.OnClickListener{
+        fragment.setOnElementClickListener(object : QuestionsSetListAdapter.OnClickListener {
             override fun onItemClick(index: Int) {
-                goToQuestionsList(index)
+               goToQuestionsSetEditor(fragment.getQuestionsSet(index))
             }
         })
 
-        fragment.setOnLongClickListener(object :QuestionsSetListAdapter.OnLongClickListener{
+        fragment.setOnLongElementClickListener(object : QuestionsSetListAdapter.OnLongClickListener {
             override fun onItemClick(index: Int) {
                 openQuestionsSetSubmenu(index)
             }
         })
+
+
     }
 
-    fun goToQuestionsList(index: Int)
-    {
-        val intent = Intent(this,QuestionsListActivity::class.java).putExtra("index",index)
+    fun goToQuestionsList(index: Int) {
+        val intent = Intent(this, QuestionsListActivity::class.java).putExtra("index", index)
         startActivity(intent)
     }
-    fun openQuestionsSetSubmenu(index: Int)
-    {
-        val toast = Toast.makeText(applicationContext,"podmenu",Toast.LENGTH_SHORT)
+
+    fun openQuestionsSetSubmenu(index: Int) {
+        val toast = Toast.makeText(applicationContext, "podmenu", Toast.LENGTH_SHORT)
         toast.show()
+
+    }
+
+    fun goToQuestionsSetEditor(questionsSet: QuestionsSet)
+    {
+        val intent = Intent(this, QuestionsSetsEditorActivity::class.java).putExtra("QS", questionsSet)
+        startActivity(intent)
 
     }
 

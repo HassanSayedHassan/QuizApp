@@ -11,10 +11,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.io.BufferedReader
-import java.io.File
-import java.io.InputStreamReader
-import java.util.zip.CheckedOutputStream
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class QuestionsSetListFragment : Fragment() {
@@ -35,6 +32,11 @@ class QuestionsSetListFragment : Fragment() {
         if(this.id == R.id.questions_sets_fragment)
         setHasOptionsMenu(true)
         questionDatabase = quizReader.readSets(activity as Activity)
+
+
+        //val fab: View = activity?.findViewById(R.id.questions_sets_fragment_fab)
+        //fab.setOnClickListener{view -> createQuestionsSet()}
+
 
     }
 
@@ -61,6 +63,15 @@ class QuestionsSetListFragment : Fragment() {
         return view
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setFABOnClickListener { view -> createQuestionsSet() }
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
 
@@ -82,7 +93,7 @@ class QuestionsSetListFragment : Fragment() {
 
             val string = quizReader.readFile(activity as Context, selectedFile)
             if(string != null) {
-                quizReader.saveStringAsFileInFilesDir(activity as Context, string)
+                quizReader.saveStringAsFileInFilesDir(activity as Context, "test",string)
 
             }
             updateQuestionDatabase()
@@ -102,7 +113,9 @@ class QuestionsSetListFragment : Fragment() {
     }
 
     private fun createQuestionsSet() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val intent = Intent(activity,QuestionsSetsEditorActivity::class.java)
+        startActivity(intent)
+
     }
 
     private fun addQuestionsSet() {
@@ -110,16 +123,26 @@ class QuestionsSetListFragment : Fragment() {
         startActivityForResult(intent,SELECT_FILE)
     }
 
-    fun setOnClickListener(onClickListener: QuestionsSetListAdapter.OnClickListener)
+    fun setOnElementClickListener(onClickListener: QuestionsSetListAdapter.OnClickListener)
     {
        val adapter = viewAdapter as QuestionsSetListAdapter
         adapter.setOnClickListener(onClickListener)
     }
 
-    fun setOnLongClickListener(onLongClickListener: QuestionsSetListAdapter.OnLongClickListener)
+    fun setOnLongElementClickListener(onLongClickListener: QuestionsSetListAdapter.OnLongClickListener)
     {
         val adapter = viewAdapter as QuestionsSetListAdapter
         adapter.setOnLongClickListener(onLongClickListener)
+    }
+    fun setFABOnClickListener(onClickListener: ((v:View)->Unit)?)
+    {
+
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.questions_sets_fragment_fab)
+        fab?.setOnClickListener(onClickListener)
+    }
+    fun getQuestionsSet(index: Int):QuestionsSet
+    {
+        return questionDatabase[index]
     }
 
 

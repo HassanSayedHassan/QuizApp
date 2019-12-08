@@ -5,6 +5,13 @@
     <string name="main_menu_button_ustawienia">Ustawienia</string>
     <string name="questions_sets_list_menu_import">Dodaj zestaw pytań</string>
     <string name="questions_sets_list_menu_create">Utwórz zestaw pytań</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="name_hint">Nazwa</string>
+    <string name="add_questions_set_photo">Dodaj zdjęcie</string>
+    <string name="create_questions_sets_add_question">Dodaj pytanie</string>
+    <string name="create_question_activity_name_hint">Nazwa</string>
+    <string name="create_question_activity_question_content_hint">Treść pytania</string>
+    <string name="create_question_activity_add_answer_hint">Dodaj odpowiedź</string>
+    <string name="create_question_activity_save_question">Zapisz</string>
+    <string name="create_question_activity_add_answer_content_hint">Odpowiedź</string>
+    <string name="create_questions_sets_save">Zapisz</string>
 </resources>

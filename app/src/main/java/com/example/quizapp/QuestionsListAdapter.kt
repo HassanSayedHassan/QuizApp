@@ -9,9 +9,22 @@ import androidx.recyclerview.widget.RecyclerView
 class QuestionsListAdapter(private var questionsSet :QuestionsSet):
     RecyclerView.Adapter<QuestionsListAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view)
+    private var onClickListener: OnClickListener? = null
+
+    interface OnClickListener
     {
+        fun onItemClick(index: Int)
+    }
+
+    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view)
+    {
+        //val name = view.findViewById<TextView>(R.id.q_list_adapter_name)
         val textView = view.findViewById<TextView>(R.id.q_list_adapter_text)
+
+        fun bindOnClickListener(onClickListener: OnClickListener?, index: Int)
+        {
+            textView.setOnClickListener{view -> onClickListener?.onItemClick(index)}
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,8 +34,9 @@ class QuestionsListAdapter(private var questionsSet :QuestionsSet):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.textView.text = questionsSet.getQuestion(position).content
 
+        holder.textView.text = questionsSet.getQuestion(position).content
+        holder.bindOnClickListener(onClickListener,position)
 
     }
 
@@ -31,4 +45,13 @@ class QuestionsListAdapter(private var questionsSet :QuestionsSet):
             return questionsSet.size()
     }
 
+    fun setQuestionsSet(questionsSet: QuestionsSet)
+    {
+        this.questionsSet=questionsSet
+    }
+
+    fun setOnClickListener(onClickListener: OnClickListener)
+    {
+        this.onClickListener = onClickListener
+    }
 }

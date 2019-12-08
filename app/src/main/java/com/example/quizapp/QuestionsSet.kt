@@ -1,8 +1,10 @@
 package com.example.quizapp
 
+import android.content.Context
 import android.net.Uri
+import java.io.Serializable
 
-class QuestionsSet()
+class QuestionsSet() :Serializable
 {
     var name: String? = null
     private val questions: MutableList<Question> = mutableListOf<Question>()
@@ -24,5 +26,27 @@ class QuestionsSet()
     fun size(): Int
     {
         return questions.size
+    }
+    fun contains(question: Question): Boolean
+    {
+        var result = false
+        questions.forEach{q -> if (q.content == question.content ) result = true }
+        return result
+    }
+    fun replace(question: Question)
+    {
+        var index = -1
+        for(i in 0..questions.size)
+        {
+            if(questions[i].content == question.content)
+            {
+                index = i
+                break
+            }
+        }
+        if(index > -1)
+        {
+            questions.set(index,question)
+        }
     }
 }

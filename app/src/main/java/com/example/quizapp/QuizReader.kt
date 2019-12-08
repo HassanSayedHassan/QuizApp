@@ -3,19 +3,21 @@ import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
+import com.google.gson.*
+
 
 class QuizReader
 {
 
     fun parseJSONString(json: String):QuestionsSet
     {
-
+        val gson = GsonBuilder().create()
+        return  gson.fromJson(json,QuestionsSet::class.java)
+        /*
         val jsonobj=JSONObject(json)
         val set=jsonobj.getJSONObject("Quiz")
         val name=set.getString("Category")
@@ -55,7 +57,7 @@ class QuizReader
         }
 
 
-        return result
+        return result */
     }
 
 
@@ -87,10 +89,11 @@ class QuizReader
         return stringResult
     }
 
-    fun saveStringAsFileInFilesDir(context: Context, string: String)
+    fun saveStringAsFileInFilesDir(context: Context,name: String, string: String)
     {
         val file_count = context.filesDir?.listFiles()?.size
-        val file = File(context.filesDir,"file_"+file_count)
+
+        val file = File(context.filesDir,name )
         file.writeText(string)
         Log.d("file path", file.absolutePath)
     }
@@ -125,6 +128,11 @@ class QuizReader
         Log.d("Result size:", result.size.toString())
 
         return result
+    }
+    fun stringOfQuestionsSet(questionsSet: QuestionsSet):String
+    {
+        val gson = GsonBuilder().create();
+        return gson.toJson(questionsSet)
     }
 
 }
