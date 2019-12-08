@@ -89,7 +89,7 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
                     else
                         questionsSet?.addQuestion(question)
 
-                    Log.d("size", questionsSet?.size().toString())
+                    //Log.d("size", questionsSet?.size().toString())
 
 
                     //val fragment = supportFragmentManager.findFragmentById(R.id.create_questions_sets_question_list_fragment) as QuestionsListFragment

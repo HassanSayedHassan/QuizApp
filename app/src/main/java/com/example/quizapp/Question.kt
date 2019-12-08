@@ -28,6 +28,7 @@ open class Question(): Serializable
     }
     fun setCorrect(answerArray: SparseBooleanArray)
     {
+        correct.clear()
         answerArray.forEach({k:Int,v:Boolean->if(v == true) correct.add(k)})
         Log.d("correct: ", correct.size.toString())
     }

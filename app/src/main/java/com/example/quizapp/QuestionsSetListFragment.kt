@@ -63,9 +63,9 @@ class QuestionsSetListFragment : Fragment() {
         return view
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
+    override fun onResume() {
+        super.onResume()
+        updateQuestionDatabase()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

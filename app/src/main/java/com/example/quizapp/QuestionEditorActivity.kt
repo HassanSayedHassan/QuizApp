@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
+import androidx.core.util.forEach
 import androidx.core.util.set
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,6 @@ class QuestionEditorActivity : AppCompatActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private var checkBoxArray: SparseBooleanArray = SparseBooleanArray()
-    //private val answersList = mutableListOf<String>(
     var question:Question = Question()
 
 
@@ -72,7 +72,8 @@ class QuestionEditorActivity : AppCompatActivity() {
             holder.editText.addTextChangedListener(holder.editTextListener)
             holder.editText.setText(answersList[position])
             holder.checkBox.isChecked = checkBoxArray[position]
-            holder.checkBox.setOnClickListener() {view -> checkBoxArray[position]=!checkBoxArray[position];Log.d(position.toString(),checkBoxArray[position].toString())}
+            holder.checkBox.setOnClickListener{view -> checkBoxArray[position]=!checkBoxArray[position]
+                Log.d(position.toString(),checkBoxArray[position].toString())}
 
         }
 
@@ -91,6 +92,7 @@ class QuestionEditorActivity : AppCompatActivity() {
 
         if(intent.hasExtra("Q")) {
             question = intent.getSerializableExtra("Q") as Question
+            checkBoxArray.clear()
             checkBoxArray = question.getCorrect()
 
         }
@@ -125,9 +127,9 @@ class QuestionEditorActivity : AppCompatActivity() {
 
         val content = findViewById<TextInputEditText>(R.id.question_editor_question_content).text.toString()
         question.content = content
-
+        checkBoxArray.forEach{i,b ->Log.d(i.toString(),b.toString())}
         question.setCorrect(checkBoxArray)
-
+        checkBoxArray.clear()
         val intent = Intent().putExtra("Q",question)
         setResult(RESULT_OK, intent)
         finish()
