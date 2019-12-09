@@ -23,7 +23,7 @@ class QuestionsSetListFragment : Fragment() {
     private var selectedFile: Uri?  = null
     private lateinit var questionDatabase:ArrayList<QuestionsSet>
     private val quizReader = QuizReader()
-
+    var selectedQuestionsSet = Int.MIN_VALUE
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -93,13 +93,27 @@ class QuestionsSetListFragment : Fragment() {
 
             val string = quizReader.readFile(activity as Context, selectedFile)
             if(string != null) {
-                quizReader.saveStringAsFileInFilesDir(activity as Context, "test",string)
+                quizReader.saveStringAsFileInFilesDir(activity as Context, quizReader.getNameFromString(string)?:return,string)
 
             }
             updateQuestionDatabase()
 
         }
-        Log.d("URI: ",selectedFile.toString())
+        else if(requestCode == QuestionsSetDialogFragment.FILE_SAVE_URI && resultCode == RESULT_OK) {
+            val qr = QuizReader()
+            val uri = data?.data
+            if(selectedQuestionsSet != Int.MIN_VALUE) {
+                val str = qr.stringOfQuestionsSet(questionDatabase.get(selectedQuestionsSet))
+                Log.d("str", str)
+                Log.d("uri", uri.toString())
+                qr.writeStringToUri(activity as Context, str, uri)
+            }
+            //
+        }
+
+
+
+
 
 
     }
@@ -144,6 +158,7 @@ class QuestionsSetListFragment : Fragment() {
     {
         return questionDatabase[index]
     }
+
 
 
 
