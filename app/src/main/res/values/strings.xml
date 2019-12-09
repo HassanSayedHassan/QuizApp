@@ -3,7 +3,7 @@
     <string name="main_menu_button_quizuj">Quizuj!</string>
     <string name="main_menu_button_zestawy">Zestawy pytań</string>
     <string name="main_menu_button_ustawienia">Ustawienia</string>
-    <string name="questions_sets_list_menu_import">Dodaj zestaw pytań</string>
+    <string name="questions_sets_list_menu_import">Importuj zestaw pytań</string>
     <string name="questions_sets_list_menu_create">Utwórz zestaw pytań</string>
     <string name="name_hint">Nazwa</string>
     <string name="add_questions_set_photo">Dodaj zdjęcie</string>

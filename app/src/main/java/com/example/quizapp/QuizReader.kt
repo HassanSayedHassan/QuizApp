@@ -151,5 +151,21 @@ class QuizReader {
         val questionsSet = gson.fromJson(string,QuestionsSet::class.java)?:null
         return questionsSet?.name
     }
+    fun deleteQuestionsSet(activity: Activity, name: String?)
+    {
+
+        if(name!=null) {
+            val files = activity.filesDir.listFiles()
+            var indexToDelete = Int.MIN_VALUE
+            for (i in 0..files.size - 1) {
+                if (files[i].name == name)
+                    indexToDelete = i;
+            }
+
+            if (indexToDelete != Int.MIN_VALUE) {
+                files[indexToDelete].delete()
+            }
+        }
+    }
 
 }

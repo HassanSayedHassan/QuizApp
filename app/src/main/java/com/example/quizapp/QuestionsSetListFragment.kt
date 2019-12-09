@@ -158,6 +158,15 @@ class QuestionsSetListFragment : Fragment() {
     {
         return questionDatabase[index]
     }
+    fun deleteQuestionsSet()
+    {
+        if(selectedQuestionsSet!=Int.MIN_VALUE )
+        {
+            val quizReader = QuizReader()
+            quizReader.deleteQuestionsSet(activity as Activity,questionDatabase[selectedQuestionsSet].name)
+            updateQuestionDatabase()
+        }
+    }
 
 
 

@@ -54,9 +54,10 @@ class QuestionsSetDialogFragment : DialogFragment() {
             fragment?.startActivityForResult(intent, FILE_SAVE_URI)
 
         }
-        else
+        else if(which == 1)
         {
-
+            val rvFragment:QuestionsSetListFragment = activity?.supportFragmentManager?.findFragmentById(R.id.questions_sets_fragment) as QuestionsSetListFragment
+            rvFragment.deleteQuestionsSet()
         }
     }
 
