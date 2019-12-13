@@ -1,6 +1,4 @@
 package com.example.quizapp
-
-import android.content.Context
 import android.net.Uri
 import java.io.Serializable
 

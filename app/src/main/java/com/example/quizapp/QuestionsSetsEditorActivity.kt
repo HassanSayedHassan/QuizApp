@@ -11,8 +11,9 @@ import android.widget.EditText
 
 class QuestionsSetsEditorActivity : AppCompatActivity() {
 
-    val QUESTION = 100
-
+    companion object {
+        private const val QUESTION = 100
+    }
     private var questionsSet: QuestionsSet? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,11 +90,6 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
                     else
                         questionsSet?.addQuestion(question)
 
-                    //Log.d("size", questionsSet?.size().toString())
-
-
-                    //val fragment = supportFragmentManager.findFragmentById(R.id.create_questions_sets_question_list_fragment) as QuestionsListFragment
-                    //fragment.updateDataSet(questionsSet?)
                 }
 
             }
@@ -104,9 +100,8 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
         questionsSet?.name = findViewById<EditText>(R.id.create_questions_sets_qs_name).text.toString()
         if (questionsSet?.name=="")
             questionsSet?.name ="default"
-        val reader = QuizReader();
-        val str = reader.stringOfQuestionsSet(questionsSet ?: return)
-        reader.saveStringAsFileInFilesDir(this,questionsSet?.name.toString(), str)
+        val str = QuizReader.stringOfQuestionsSet(questionsSet ?: return)
+        QuizReader.saveStringAsFileInFilesDir(this,questionsSet?.name.toString(), str)
         questionsSet = null
         questionsSet = QuestionsSet()
 

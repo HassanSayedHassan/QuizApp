@@ -19,24 +19,22 @@ class QuestionsSetListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: QuestionsSetListAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private val SELECT_FILE = 100
+
     private var selectedFile: Uri?  = null
     private lateinit var questionDatabase:ArrayList<QuestionsSet>
-    private val quizReader = QuizReader()
     var selectedQuestionsSet = Int.MIN_VALUE
 
+    companion object
+    {
+        private const val SELECT_FILE = 100
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
 
             super.onCreate(savedInstanceState)
 
         if(this.id == R.id.questions_sets_fragment)
         setHasOptionsMenu(true)
-        questionDatabase = quizReader.readSets(activity as Activity)
-
-
-        //val fab: View = activity?.findViewById(R.id.questions_sets_fragment_fab)
-        //fab.setOnClickListener{view -> createQuestionsSet()}
-
+        questionDatabase = QuizReader.readSets(activity as Activity)
 
     }
 
@@ -91,37 +89,30 @@ class QuestionsSetListFragment : Fragment() {
             selectedFile = data?.data
 
 
-            val string = quizReader.readFile(activity as Context, selectedFile)
+            val string = QuizReader.readFile(activity as Context, selectedFile)
             if(string != null) {
-                quizReader.saveStringAsFileInFilesDir(activity as Context, quizReader.getNameFromString(string)?:return,string)
+                QuizReader.saveStringAsFileInFilesDir(activity as Context, QuizReader.getNameFromString(string)?:return,string)
 
             }
             updateQuestionDatabase()
 
         }
         else if(requestCode == QuestionsSetDialogFragment.FILE_SAVE_URI && resultCode == RESULT_OK) {
-            val qr = QuizReader()
             val uri = data?.data
             if(selectedQuestionsSet != Int.MIN_VALUE) {
-                val str = qr.stringOfQuestionsSet(questionDatabase.get(selectedQuestionsSet))
+                val str = QuizReader.stringOfQuestionsSet(questionDatabase.get(selectedQuestionsSet))
                 Log.d("str", str)
                 Log.d("uri", uri.toString())
-                qr.writeStringToUri(activity as Context, str, uri)
+                QuizReader.writeStringToUri(activity as Context, str, uri)
             }
-            //
+
         }
-
-
-
-
-
-
     }
 
     private fun updateQuestionDatabase()
     {
         questionDatabase.clear()
-        questionDatabase = quizReader.readSets(activity as Activity)
+        questionDatabase = QuizReader.readSets(activity as Activity)
         viewAdapter.setDataSet(questionDatabase)
         viewAdapter.notifyDataSetChanged()
     }
@@ -162,8 +153,7 @@ class QuestionsSetListFragment : Fragment() {
     {
         if(selectedQuestionsSet!=Int.MIN_VALUE )
         {
-            val quizReader = QuizReader()
-            quizReader.deleteQuestionsSet(activity as Activity,questionDatabase[selectedQuestionsSet].name)
+            QuizReader.deleteQuestionsSet(activity as Activity,questionDatabase[selectedQuestionsSet].name)
             updateQuestionDatabase()
         }
     }

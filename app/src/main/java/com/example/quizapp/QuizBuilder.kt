@@ -20,19 +20,7 @@ class QuizBuilder
 
 
     }
-    /*
-    fun createQuestion(content: String):Question
-    {
-        val q= Question()
 
-        q.ans = answers.toMutableList()
-        q.correct = corrects.toMutableList()
-        qs.addQuestion(q)
-        answers.clear()
-        corrects.clear()
-        return q
-
-    }*/
     fun addAnswer(answer: String, isCorrect: Boolean)
     {
         answers.add(answer)

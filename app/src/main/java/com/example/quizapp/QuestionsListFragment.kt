@@ -1,6 +1,5 @@
 package com.example.quizapp
 
-
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +16,6 @@ class QuestionsListFragment : Fragment() {
     private lateinit var viewAdapter: QuestionsListAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
     private var questionsSet: QuestionsSet = QuestionsSet()
-    private val quizReader = QuizReader()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +23,7 @@ class QuestionsListFragment : Fragment() {
         val index = activity?.intent?.getIntExtra("index", -1)
 
         if (index != null && index > -1) {
-            questionsSet = quizReader.readSets(activity as Activity)[index]
+            questionsSet = QuizReader.readSets(activity as Activity)[index]
 
         } else if (activity is QuestionsSetsEditorActivity) {
 

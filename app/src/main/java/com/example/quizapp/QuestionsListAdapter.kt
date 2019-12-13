@@ -18,7 +18,7 @@ class QuestionsListAdapter(private var questionsSet :QuestionsSet):
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view)
     {
-        //val name = view.findViewById<TextView>(R.id.q_list_adapter_name)
+
         val textView = view.findViewById<TextView>(R.id.q_list_adapter_text)
 
         fun bindOnClickListener(onClickListener: OnClickListener?, index: Int)
