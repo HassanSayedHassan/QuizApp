@@ -13,49 +13,8 @@ class QuizReader {
     val gson = GsonBuilder().create()
 
     fun parseJSONString(json: String): QuestionsSet? {
-        //val gson = GsonBuilder().create()
         return gson.fromJson(json, QuestionsSet::class.java) ?: null
-        /*
-        val jsonobj=JSONObject(json)
-        val set=jsonobj.getJSONObject("Quiz")
-        val name=set.getString("Category")
-        val result = QuestionsSet(name)
-        val jsonlist = set.getJSONArray("Questions")
 
-
-        var i=0
-
-        while(i<jsonlist.length())
-        {
-
-            val obj=jsonlist.getJSONObject(i)
-            val question = Question(obj.getString("textcontent"))
-
-            val answers=obj.getJSONArray("answers")
-            var j=0
-            while(j<answers.length())
-            {
-                val answer=answers.getString(j)
-                question.ans.add(answer)
-                print(answer)
-                j++
-            }
-            val correct=obj.getJSONArray("correct")
-            var k=0
-            while(k<correct.length())
-            {
-                val corr=correct.getInt(k)
-                print(corr)
-                question.correct.add(corr)
-                k++
-            }
-            result.addQuestion(question)
-            i++
-
-        }
-
-
-        return result */
     }
 
 
@@ -142,7 +101,6 @@ class QuizReader {
     }
 
     fun stringOfQuestionsSet(questionsSet: QuestionsSet?): String {
-        //val gson = GsonBuilder().create()
         return gson.toJson(questionsSet)
     }
 
