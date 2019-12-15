@@ -7,7 +7,6 @@ class QuestionsSet() :Serializable
     var name: String? = null
     private val questions: MutableList<Question> = mutableListOf<Question>()
     private var image: Uri?=null
-    private var progress:QuestionSetProgress = QuestionSetProgress()
 
     constructor(name: String):this()
     {
