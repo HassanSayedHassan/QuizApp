@@ -43,8 +43,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:layout_weight="0"
+        android:textSize="24sp"
+        android:background="@color/colorPrimary"
         android:onClick="goToPlayer"
         android:text="Rozpocznij Quiz!"
-        android:layout_weight="0"/>
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>
