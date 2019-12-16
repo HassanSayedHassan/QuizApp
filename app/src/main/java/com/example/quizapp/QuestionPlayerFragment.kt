@@ -83,7 +83,6 @@ class QuestionPlayerFragment : Fragment() {
             q_content.setPadding(20,20,20,20)
             val textLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 450)
             textLayoutParams.setMargins(60,60,60,60)
-            //q_container.addView(q_content, R.id.question_content_text_view)
             q_container.addView(q_content,textLayoutParams)
             var ans_size=q?.ans?.size
             if(ans_size==null)
