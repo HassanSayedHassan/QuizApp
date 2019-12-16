@@ -13,6 +13,7 @@ class QuestionsSetsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_questions_sets)
+        supportActionBar?.title = "Zestawy pytań"
 
 
     }

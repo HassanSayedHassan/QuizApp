@@ -13,6 +13,7 @@ class SelectQuestionsSetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_select_questions_set)
+            supportActionBar?.title = "Quizuj!"
 
 
     }

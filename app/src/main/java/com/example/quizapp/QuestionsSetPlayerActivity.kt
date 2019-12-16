@@ -122,8 +122,10 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
     }
     fun finish(view: View)
     {
-        val intent=Intent(this,MainMenuActivity::class.java)
-        startActivity(intent)
+        finish()
+
+        //val intent=Intent(this,MainMenuActivity::class.java)
+        //startActivity(intent)
     }
     fun goToSummary(view: View)
     {
