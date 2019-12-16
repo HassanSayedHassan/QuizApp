@@ -79,7 +79,11 @@ class QuestionPlayerFragment : Fragment() {
             val q:Question?=qs?.getQuestion(i)
             val q_content=TextView(ac)
             q_content.textSize=24f
-            val textLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+            q_content.setBackgroundColor(Color.rgb(216,216,240))
+            q_content.setPadding(20,20,20,20)
+            val textLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 450)
+            textLayoutParams.setMargins(60,60,60,60)
+            //q_container.addView(q_content, R.id.question_content_text_view)
             q_container.addView(q_content,textLayoutParams)
             var ans_size=q?.ans?.size
             if(ans_size==null)
@@ -94,6 +98,7 @@ class QuestionPlayerFragment : Fragment() {
                 val id_ = btn.getId()
                 btn.setText(q?.ans?.get(i))
                 btn.setBackgroundColor(Color.rgb(100, 20, 255))
+                btn.setTextColor(Color.WHITE)
                 val buttonLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
                 buttonLayoutParams.setMargins(30, 20, 30, 10);
 
