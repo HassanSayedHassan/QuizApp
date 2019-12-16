@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".QuestionSetSummaryFragment">
+    tools:context=".QuestionSetSummaryFragment"
+    >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="6"
         android:gravity="center"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/hello_blank_fragment"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/best"

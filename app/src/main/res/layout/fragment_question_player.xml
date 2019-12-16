@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout
     android:id="@+id/q_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".QuestionPlayerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
-        android:id="@+id/q_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
 
-    <Button
-        android:id="@+id/next_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:onClick="check"
-        android:text="@string/check_answers_button" />
+
+        <LinearLayout
+            android:id="@+id/q_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+ScrollView can host only one direct child
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:onClick="check"
+            android:text="@string/check_answers_button" />
+
+
+
 
 </LinearLayout>
+</ScrollView>
