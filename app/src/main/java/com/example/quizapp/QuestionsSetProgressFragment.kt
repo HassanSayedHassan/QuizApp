@@ -47,7 +47,7 @@ class QuestionsSetProgressFragment : Fragment() {
 
         val ac=activity as QuestionsSetPlayerActivity
         Log.d("as","updatuje")
-        Toast.makeText(context,"asdas",Toast.LENGTH_SHORT)
+        //Toast.makeText(context,"asdas",Toast.LENGTH_SHORT)
         var progress=ac.progress
         if(progress==null)
         {
@@ -56,25 +56,19 @@ class QuestionsSetProgressFragment : Fragment() {
             val name:String?=qs.name
             Log.d("nazwa",name)
             progress?.questionsSetName=name
-            progress?.attempts=1
+            progress?.attempts=0
             progress?.correctAnswers=0
 
+            ac.progress=progress
 
         }
 
-        ac.progress=progress
-
-
-
-
-
-
-        Log.d("",progress?.questionsSetName)
+        Log.d("progress_qs_name",progress?.questionsSetName)
 
         category_tv.text=("Kategoria: "+progress.questionsSetName)
         Log.d("w cat",category_tv.getText().toString())
 
-        if(progress?.attempts==1)
+        if(progress?.attempts==0)
         {
             attempts_tv.text="Pierwsze podejście"
 
@@ -84,7 +78,8 @@ class QuestionsSetProgressFragment : Fragment() {
 
             best_tv.setText("Najlepszy wynik: "+progress?.correctAnswers)
 
-            attempts_tv.setText("Podejście: "+progress?.attempts)
+            val incrementedAttempts = progress.attempts + 1
+            attempts_tv.setText("Podejście: "+ incrementedAttempts)
         }
 
 

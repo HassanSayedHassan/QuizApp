@@ -30,10 +30,13 @@ class QuestionsSetListFragment : Fragment() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
 
-            super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
 
-        if(this.id == R.id.questions_sets_fragment)
-        setHasOptionsMenu(true)
+        if(this.id == R.id.questions_sets_fragment) {
+            setHasOptionsMenu(true)
+
+        }
+
         questionDatabase = QuizReader.readSets(activity as Activity)
 
     }
@@ -55,14 +58,19 @@ class QuestionsSetListFragment : Fragment() {
         recyclerView = view.findViewById<RecyclerView>(R.id.questions_sets_recycler).apply {
             layoutManager = viewManager
             adapter = viewAdapter
-
         }
+
+
 
         return view
     }
 
     override fun onResume() {
         super.onResume()
+        if(this.id == R.id.select_questions_sets_fragment)
+        {
+            activity?.findViewById<FloatingActionButton>(R.id.questions_sets_fragment_fab)?.hide()
+        }
         updateQuestionDatabase()
     }
 

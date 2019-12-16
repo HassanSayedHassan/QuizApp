@@ -3,7 +3,6 @@ import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import org.json.JSONObject
 import com.google.gson.*
 import java.io.*
 
@@ -12,6 +11,7 @@ class QuizReader {
 
     companion object {
         val gson = GsonBuilder().create()
+        val QS_SUBFOLDER_NAME = "QuestionsSets";
 
         fun parseJSONString(json: String): QuestionsSet? {
             return gson.fromJson(json, QuestionsSet::class.java) ?: null
@@ -44,8 +44,15 @@ class QuizReader {
         }
 
         fun saveStringAsFileInFilesDir(context: Context, name: String, string: String) {
-            //val file_count = context.filesDir?.listFiles()?.size
-            val file = File(context.filesDir, name)
+
+            val directory = File(context.filesDir, QS_SUBFOLDER_NAME)
+            if(!directory.exists()) {
+                Log.d("mkdir",directory.path )
+                directory.mkdir()
+            }
+            Log.d("directory", directory.path)
+
+            val file = File(directory, name)
             file.writeText(string)
         }
 
@@ -69,28 +76,34 @@ class QuizReader {
         }
 
         fun readSets(activity: Activity): ArrayList<QuestionsSet> {
-            val files = activity.filesDir.listFiles()
 
-            var n = 0
-            if (files?.size != null) {
-                n = files.size
-            }
             val result = ArrayList<QuestionsSet>()
-            var i = 0
-            while (i < n) {
-                var name = ""
-                if (files?.get(i) != null) {
-                    name = files[i].name
+            val dirList = activity.filesDir.listFiles().filter { file -> file.name == QS_SUBFOLDER_NAME}
+
+            if(dirList.isNotEmpty()) {
+                val directory: File = dirList[0]
+                val files = directory.listFiles()
+                Log.d("directory", directory.path)
+                var n = 0
+                if (files?.size != null) {
+                    n = files.size
                 }
-                val file = File(activity.filesDir, name)
 
-                val jsonString: String = file.readText(Charsets.UTF_8)
-                val newSet: QuestionsSet? = parseJSONString(jsonString) ?: null
-                if (newSet != null)
-                    result.add(newSet)
-                i++
+                var i = 0
+                while (i < n) {
+                    var name = ""
+                    if (files?.get(i) != null) {
+                        name = files[i].name
+                    }
+                    val file = File(directory, name)
+
+                    val jsonString: String = file.readText(Charsets.UTF_8)
+                    val newSet: QuestionsSet? = parseJSONString(jsonString) ?: null
+                    if (newSet != null)
+                        result.add(newSet)
+                    i++
+                }
             }
-
             Log.d("Result size:", result.size.toString())
 
             return result
@@ -109,15 +122,19 @@ class QuizReader {
         {
 
             if(name!=null) {
-                val files = activity.filesDir.listFiles()
-                var indexToDelete = Int.MIN_VALUE
-                for (i in 0..files.size - 1) {
-                    if (files[i].name == name)
-                        indexToDelete = i;
-                }
+                val directory:File = activity.filesDir.listFiles().filter { file -> file.name == QS_SUBFOLDER_NAME}[0]
 
-                if (indexToDelete != Int.MIN_VALUE) {
-                    files[indexToDelete].delete()
+                if(directory.exists()) {
+                    val files = directory.listFiles()
+                    var indexToDelete = Int.MIN_VALUE
+                    for (i in 0..files.size - 1) {
+                        if (files[i].name == name)
+                            indexToDelete = i;
+                    }
+
+                    if (indexToDelete != Int.MIN_VALUE) {
+                        files[indexToDelete].delete()
+                    }
                 }
             }
         }

@@ -26,7 +26,11 @@ class QuestionSetSummaryFragment : Fragment() {
     }
     fun updateData()
     {
+
         val ac=activity as QuestionsSetPlayerActivity
+        if(ac.progress!=null) {
+            ac.progress?.incrementAttempts()
+        }
         result.text="Twój wynik:\n "+ac.score.toString()
         var bests:Int?=ac.progress?.correctAnswers
         if(bests==null)
@@ -51,6 +55,7 @@ class QuestionSetSummaryFragment : Fragment() {
     fun finish(view: View)
     {
         val ac=activity as QuestionsSetPlayerActivity
+
         ac.finish(view)
     }
 

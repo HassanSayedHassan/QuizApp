@@ -104,12 +104,12 @@ class QuestionPlayerFragment : Fragment() {
                     {
                         answers_checked.add(i)
                         btn.setBackgroundColor(Color.rgb(50, 120, 255))
-                        Toast.makeText(
+                        /*Toast.makeText(
                             view.context,
                             "Button clicked index = $id_", Toast.LENGTH_SHORT
 
                         )
-                            .show()
+                            .show()*/
                     }
                     else
                     {

@@ -30,7 +30,7 @@
             android:layout_marginBottom="30dp"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/add_circle"
+            android:src="@drawable/add_circle_48"
             app:backgroundTint="@color/colorPrimary"
             app:fabSize="normal" />
 
