@@ -21,7 +21,7 @@ import java.io.FileOutputStream
 
 class QuestionsSetPlayerActivity : AppCompatActivity() {
 
-    val progress_list:ArrayList<QuestionSetProgress?> = ArrayList()
+    var progress_list:ArrayList<QuestionSetProgress?> = ArrayList()
     val fragment =  QuestionsSetProgressFragment()
     var q_fragment = QuestionPlayerFragment()
     var s_fragment=QuestionSetSummaryFragment()
@@ -60,7 +60,7 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions_set_player)
-
+        progress_list = readProgress(this)
         /*
         var filename = "progress"
 
@@ -122,6 +122,7 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
     }
     fun finish(view: View)
     {
+        saveToFile()
         finish()
 
         //val intent=Intent(this,MainMenuActivity::class.java)
@@ -182,6 +183,10 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
     }
     fun getProgress(context:QuestionsSetPlayerActivity):QuestionSetProgress?
     {
+        var qs:QuestionsSet = intent.getSerializableExtra("QS") as QuestionsSet
+        return progress_list.find { progress -> progress?.questionsSetName.equals(qs.name) }
+
+        /*
         Log.d("getProgress:","method")
         val list:ArrayList<QuestionSetProgress?> = readProgress(context)
         var i=0
@@ -199,7 +204,7 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
             }
             i++
         }
-        return null
+        return null*/
 
     }
 

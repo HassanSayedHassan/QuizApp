@@ -48,8 +48,8 @@ class QuestionSetSummaryFragment : Fragment() {
         }
 
         attempt.text="Próba numer "+ac.progress?.attempts.toString()
-        ac.score=0
         ac.saveToFile()
+        ac.score=0
 
     }
     fun finish(view: View)
