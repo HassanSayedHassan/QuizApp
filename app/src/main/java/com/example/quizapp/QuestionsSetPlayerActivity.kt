@@ -1,22 +1,15 @@
 package com.example.quizapp
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.util.Log
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
-
-
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.quizapp.QuestionPlayerFragment.Companion.index
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-
 
 
 class QuestionsSetPlayerActivity : AppCompatActivity() {
@@ -61,28 +54,7 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions_set_player)
         progress_list = readProgress(this)
-        /*
-        var filename = "progress"
 
-        val Directory = File(filesDir,"Progress")
-
-        Directory.mkdirs()
-
-        val outputFile = File(Directory, filename)
-
-        try {
-            val fos = FileOutputStream(outputFile)
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        }
-        val directory = File(filesDir, PROGRESS_DIR_NAME)
-        val filesList = directory.listFiles().filter { file -> file.name == PROGRESS_FILE_NAME }
-        if(filesList.size > 0) {
-
-
-
-
-        }*/
         showProgress(fragment)
 
 
@@ -95,24 +67,14 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
         if(!directory.exists())
             directory.mkdir()
 
-        //var filename = "progress"
         val outputFile = File(directory, PROGRESS_FILE_NAME)
         outputFile.writeText(json_list)
-
-        /*
-        try {
-            //val fos = FileOutputStream(outputFile)
-
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        }
-        */
 
     }
     override fun onResume() {
         super.onResume()
         progress=getProgress(this)
-        //Log.d("progress name",progress?.questionsSetName)
+
     }
 
     fun update()
@@ -125,16 +87,11 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
         saveToFile()
         finish()
 
-        //val intent=Intent(this,MainMenuActivity::class.java)
-        //startActivity(intent)
     }
     fun goToSummary(view: View)
     {
 
         val transaction = supportFragmentManager.beginTransaction()
-
-
-
         transaction.replace(R.id.container ,s_fragment)
         transaction.commit()
 
@@ -186,26 +143,6 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
         var qs:QuestionsSet = intent.getSerializableExtra("QS") as QuestionsSet
         return progress_list.find { progress -> progress?.questionsSetName.equals(qs.name) }
 
-        /*
-        Log.d("getProgress:","method")
-        val list:ArrayList<QuestionSetProgress?> = readProgress(context)
-        var i=0
-        while(i<list.size)
-        {
-            Log.d("while loop","in")
-            var qs:QuestionsSet = intent.getSerializableExtra("QS") as QuestionsSet
-            Log.d("qs",qs.name)
-            //Log.d("qs_name",list[i]?.questionsSetName)
-            if(list[i]?.questionsSetName.equals(qs.name))
-            {
-                Log.d("progress: ","found")
-                return list[i]
-
-            }
-            i++
-        }
-        return null*/
-
     }
 
     fun readProgress(context:QuestionsSetPlayerActivity):ArrayList<QuestionSetProgress?>
@@ -226,28 +163,7 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
 
             }
         }
-        /*
-        val files = context.filesDir.listFiles()
-        var i=0
-        var size:Int?=files?.size
-        if(size==null)
-        {
-            size=0
-        }
-        while(i<size)
-        {
-            if(files[i].name=="progress")
-            {
 
-                val file=files[i]
-                val jsonString: String? = file?.readText(Charsets.UTF_8)
-
-
-                val result = parseJSONString(jsonString)
-                return result
-            }
-            i++
-        }*/
         return result
     }
 
