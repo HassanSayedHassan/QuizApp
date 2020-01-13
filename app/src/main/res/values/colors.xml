@@ -7,4 +7,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="input_text">#1A5A5E</color>
     <color name="light_green">#B4E7D9</color>
+    <color name="dark_background">#10132E</color>
 </resources>

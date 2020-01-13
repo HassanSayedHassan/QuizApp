@@ -7,7 +7,8 @@
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
     android:layout_marginBottom="10dp"
-    android:background="@drawable/input_text">
+    android:background="@drawable/content_background"
+    app:cardBackgroundColor="@color/dark_background">
 
     <TextView
         android:id="@+id/q_list_adapter_text"
@@ -15,8 +16,8 @@
         android:layout_height="match_parent"
         android:background="@drawable/input_text"
         android:fontFamily="casual"
-        android:textColor="@color/light_green"
         android:paddingLeft="10dp"
+        android:textColor="@color/light_green"
         android:textSize="24sp" />
 
 
