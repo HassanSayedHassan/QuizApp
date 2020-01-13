@@ -3,52 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background_gradient"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".QuestionsSetProgressFragment">
 
 
-    <TextView
-        android:id="@+id/category_tv"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:layout_weight="6"
-     />
+        android:layout_height="match_parent"
+        android:layout_weight="0">
 
-    <TextView
-        android:id="@+id/best_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:layout_weight="4"
-         />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/attempts_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:layout_weight="4"
-         />
+            <TextView
+                android:id="@+id/category_tv"
+                android:layout_width="424dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:textColor="#B4E7D9"
+                android:textSize="45sp"
+                app:fontFamily="casual" />
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="10dp"
-        android:layout_weight="0"
-        android:textSize="24sp"
-        android:background="@color/colorPrimary"
-        android:onClick="goToPlayer"
-        android:text="Rozpocznij Quiz!"
-        android:textColor="#FFFFFF" />
+            <TextView
+                android:id="@+id/best_tv"
+                android:layout_width="match_parent"
+                android:layout_height="113dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:textColor="#B4E7D9"
+                android:textSize="45sp"
+                app:fontFamily="casual" />
+
+            <TextView
+                android:id="@+id/attempts_tv"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:textColor="#B4E7D9"
+                android:textSize="45sp"
+                app:fontFamily="casual" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="119dp"
+                android:layout_weight="0" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_gravity="bottom"
+                android:layout_margin="10dp"
+                android:layout_weight="0"
+                android:background="@drawable/rounded_button"
+                android:onClick="goToPlayer"
+
+                android:text="Start Quiz!"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

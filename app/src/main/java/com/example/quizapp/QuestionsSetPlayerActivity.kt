@@ -15,11 +15,14 @@ import java.io.File
 class QuestionsSetPlayerActivity : AppCompatActivity() {
 
     var progress_list:ArrayList<QuestionSetProgress?> = ArrayList()
+    val wrong_answers:ArrayList<Int> = ArrayList()
     val fragment =  QuestionsSetProgressFragment()
     var q_fragment = QuestionPlayerFragment()
     var s_fragment=QuestionSetSummaryFragment()
+    var r_fragment=QuestionSetReviewFragment()
     var progress:QuestionSetProgress?=QuestionSetProgress()
     var score:Int=0
+    var postition=0
 
 
     companion object {
@@ -59,6 +62,10 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
 
 
     }
+    fun writeWrongAnswer(n:Int)
+    {
+        wrong_answers.add(n)
+    }
     fun saveToFile()
     {
         progress_list.add(progress)
@@ -88,6 +95,13 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
         finish()
 
     }
+    fun goToReview(View: View)
+    {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container ,r_fragment)
+        transaction.commit()
+    }
+
     fun goToSummary(view: View)
     {
 
@@ -144,7 +158,33 @@ class QuestionsSetPlayerActivity : AppCompatActivity() {
         return progress_list.find { progress -> progress?.questionsSetName.equals(qs.name) }
 
     }
+    fun nextWrong(View:View)
+    {
+        var qs:QuestionsSet = intent.getSerializableExtra("QS") as QuestionsSet
+        if(postition==qs.size()-1)
+        {
 
+        }
+        else
+        {
+            postition++
+            r_fragment.updateWrong(postition)
+        }
+
+    }
+    fun previousWrong(view: View)
+    {
+        if(postition==0)
+        {
+
+        }
+        else
+        {
+            postition--
+            r_fragment.updateWrong(postition)
+        }
+
+    }
     fun readProgress(context:QuestionsSetPlayerActivity):ArrayList<QuestionSetProgress?>
     {
 

@@ -65,21 +65,21 @@ class QuestionsSetProgressFragment : Fragment() {
 
         Log.d("progress_qs_name",progress?.questionsSetName)
 
-        category_tv.text=("Kategoria: "+progress.questionsSetName)
+        category_tv.text=("Quiz: "+progress.questionsSetName)
         Log.d("w cat",category_tv.getText().toString())
 
         if(progress?.attempts==0)
         {
-            attempts_tv.text="Pierwsze podejście"
+            attempts_tv.text="First attempt"
 
         }
         else
         {
 
-            best_tv.setText("Najlepszy wynik: "+progress?.correctAnswers)
+            best_tv.setText("Best Score: "+progress?.correctAnswers)
 
             val incrementedAttempts = progress.attempts + 1
-            attempts_tv.setText("Podejście: "+ incrementedAttempts)
+            attempts_tv.setText("Attempt: "+ incrementedAttempts)
         }
 
 

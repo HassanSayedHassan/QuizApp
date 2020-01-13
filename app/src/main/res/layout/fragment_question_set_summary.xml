@@ -2,22 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
+    android:background="@drawable/background_gradient"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".QuestionSetSummaryFragment"
-    >
+    tools:context=".QuestionSetSummaryFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:id="@+id/result"
+        style="@android:style/Widget.DeviceDefault.Light.TextView.SpinnerItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="116dp"
         android:layout_weight="6"
         android:gravity="center"
         android:text="@string/hello_blank_fragment"
-        android:textSize="24sp" />
+        android:textColor="#B4E7D9"
+        android:textColorHint="#D69F9F"
+        android:textSize="37dp"
+        android:textStyle="bold"
+        app:fontFamily="casual" />
 
     <TextView
         android:id="@+id/best"
@@ -26,7 +32,9 @@
         android:layout_weight="4"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="24sp" />
+        android:textColor="#B4E7D9"
+        android:textSize="37dp"
+        app:fontFamily="casual" />
 
     <TextView
         android:id="@+id/attempt"
@@ -35,7 +43,27 @@
         android:layout_weight="4"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="24sp" />
+        android:textColor="#B4E7D9"
+        android:textSize="37dp"
+        app:fontFamily="casual" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Click question to see correct answers!"
+        android:textColor="#B4E7D9"
+        android:textSize="20dp"
+        app:fontFamily="casual" />
+
+    <ListView
+        android:id="@+id/lista"
+        android:layout_width="361dp"
+        android:layout_height="198dp"
+        android:layout_gravity="center"
+        android:layout_weight="6" />
 
     <Button
         android:id="@+id/button4"
@@ -43,9 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_weight="0"
-        android:background="@color/colorPrimary"
+
+        android:background="@drawable/rounded_button"
         android:onClick="finish"
-        android:text="Zakończ"
+        android:text="Finish"
         android:textColor="#ffFFFFFF"
         android:textSize="24sp" />
 

@@ -6,37 +6,61 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
+    android:background="@drawable/background_gradient"
     tools:context=".QuestionEditorActivity">
 
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:gravity="center"
+        android:text="Create a question"
+        android:textColor="#B4E7D9"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:fontFamily="casual" />
 
-        <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/question_editor_question_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/create_question_activity_question_content_hint" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/question_editor_question_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/input_text"
+            android:hint="@string/create_question_activity_question_content_hint"
+            android:textColor="@color/light_green"
+            android:textColorHint="@color/light_green" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="createEmptyAnswer"
-            android:text="@string/create_question_activity_add_answer_hint" />
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="createEmptyAnswer"
+        android:text="@string/create_question_activity_add_answer_hint"
+        android:textColor="#ffFFFFFF"
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/answerws_list_recycler_view"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="saveQuestion"
-            android:text="@string/create_question_activity_save_question" />
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:textColor="#ffFFFFFF"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="saveQuestion"
+        android:text="@string/create_question_activity_save_question" />
     </LinearLayout>

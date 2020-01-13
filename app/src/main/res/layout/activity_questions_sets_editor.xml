@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="0"
+    android:background="@drawable/background_gradient"
     android:orientation="vertical"
     android:padding="20dp">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:layout_weight="0"
+        android:gravity="center"
+        android:text="Quiz Creator"
+        android:textColor="#B4E7D9"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:fontFamily="casual" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:layout_weight="0">
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/create_questions_sets_qs_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+
+            android:background="@drawable/input_text"
             android:hint="@string/name_hint" />
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -30,8 +49,13 @@
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_button"
             android:onClick="openCreateQuestionActivity"
-            android:text="@string/create_questions_sets_add_question" />
+            android:text="@string/create_questions_sets_add_question"
+            android:textColor="#ffFFFFFF"
+            android:textSize="20sp" />
 
         <fragment
             android:id="@+id/create_questions_sets_question_list_fragment"
@@ -42,10 +66,14 @@
 
         <Button
             android:id="@+id/button8"
-            android:onClick="saveQuestionsSet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_weight="0"
+            android:textColor="#ffFFFFFF"
+            android:textSize="20sp"
+            android:background="@drawable/rounded_button"
+            android:onClick="saveQuestionsSet"
             android:text="@string/create_questions_sets_save" />
 
     </LinearLayout>

@@ -4,35 +4,62 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_gradient"
     xmlns:tools="http://schemas.android.com/tools">
-<LinearLayout
-    android:id="@+id/q_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".QuestionPlayerFragment">
-
-
-
 
         <LinearLayout
-            android:id="@+id/q_container"
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-ScrollView can host only one direct child
+            android:orientation="vertical"
+            tools:context=".QuestionPlayerFragment">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </ScrollView>
+
+                        <LinearLayout
+                            android:id="@+id/q_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                                <ScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                                <LinearLayout
+                                    android:id="@+id/q_container"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="518dp"
+                                    android:orientation="vertical">
+                                        ScrollView can host only one direct child
+
+                                </LinearLayout>
+
+                        </LinearLayout>
+
+                </LinearLayout>
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_gravity="bottom|end"
+                android:background="@drawable/rounded_button"
+                android:onClick="check"
+                android:text="@string/check_answers_button"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+
         </LinearLayout>
-
-        <Button
-            android:id="@+id/next_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:onClick="check"
-            android:text="@string/check_answers_button" />
-
-
-
-
-</LinearLayout>
 </ScrollView>

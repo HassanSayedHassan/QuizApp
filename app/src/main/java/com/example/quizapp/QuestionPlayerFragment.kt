@@ -12,6 +12,7 @@ import android.widget.Toast
 import android.R.interpolator.linear
 import android.content.Intent
 import android.graphics.Color
+import android.view.Gravity
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
@@ -50,14 +51,14 @@ class QuestionPlayerFragment : Fragment() {
     fun updateQuestionData(i:Int)
     {
         answers_checked.clear()
-        next_button.text="Sprawdź"
+        next_button.text="Check"
         next_button.setOnClickListener(View.OnClickListener { view ->
             check(view)})
         q_container.removeAllViews()
 
 
         val qs:QuestionsSet = activity?.intent?.getSerializableExtra("QS") as QuestionsSet
-        Log.d("iteracja",i.toString())
+
         if(i>=qs.size())
         {
 
@@ -78,10 +79,12 @@ class QuestionPlayerFragment : Fragment() {
 
             val q:Question?=qs?.getQuestion(i)
             val q_content=TextView(ac)
-            q_content.textSize=24f
-            q_content.setBackgroundColor(Color.rgb(216,216,240))
+            q_content.textSize=30f
+            q_content.setTextColor(Color.WHITE)
+            q_content.gravity=Gravity.CENTER
+
             q_content.setPadding(20,20,20,20)
-            val textLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 450)
+            val textLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 350)
             textLayoutParams.setMargins(60,60,60,60)
             q_container.addView(q_content,textLayoutParams)
             var ans_size=q?.ans?.size
@@ -96,8 +99,10 @@ class QuestionPlayerFragment : Fragment() {
                 btn.setId(i)
                 val id_ = btn.getId()
                 btn.setText(q?.ans?.get(i))
-                btn.setBackgroundColor(Color.rgb(100, 20, 255))
+                btn.height=65
+                btn.setBackgroundResource(R.drawable.answer_button)
                 btn.setTextColor(Color.WHITE)
+                btn.textSize=17f
                 val buttonLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
                 buttonLayoutParams.setMargins(30, 20, 30, 10);
 
@@ -107,7 +112,7 @@ class QuestionPlayerFragment : Fragment() {
                     if(!answers_checked.contains(i))
                     {
                         answers_checked.add(i)
-                        btn.setBackgroundColor(Color.rgb(50, 120, 255))
+                        btn.setBackgroundResource(R.drawable.checked_answer)
                         /*Toast.makeText(
                             view.context,
                             "Button clicked index = $id_", Toast.LENGTH_SHORT
@@ -119,7 +124,7 @@ class QuestionPlayerFragment : Fragment() {
                     {
 
                         answers_checked.remove(i)
-                        btn.setBackgroundColor(Color.rgb(100, 20, 255))
+                        btn.setBackgroundResource(R.drawable.answer_button)
 
                     }
 
@@ -156,11 +161,11 @@ class QuestionPlayerFragment : Fragment() {
             if(answers_checked.contains(correct_button))
             {
 
-                good_btn.setBackgroundColor(Color.rgb(100, 220, 130))
+                good_btn.setBackgroundResource(R.drawable.correct_answer)
             }
             else
             {
-                good_btn.setBackgroundColor(Color.rgb(200, 220, 130))
+                good_btn.setBackgroundResource(R.drawable.correct_answer)
             }
 
 //            if(answers_checked.get(i)!=q?.correct?.get(i))
@@ -189,10 +194,15 @@ class QuestionPlayerFragment : Fragment() {
         }
         if(all_good)
         {
-            Log.d("allgood","tak")
+
+
             ac.score= ac.score+1
 
 
+        }
+        else
+        {
+            ac.writeWrongAnswer(index)
         }
     }
     fun changeButtons()
@@ -208,28 +218,28 @@ class QuestionPlayerFragment : Fragment() {
         {
             cor_size=0
         }
-        Log.d("pytanie",index.toString())
+
         var i=0
         while(i<answers_checked.size)
         {
             var checked_button:Int=answers_checked.get(i)
             var wrong_btn = ac.findViewById(checked_button) as Button
 
-            wrong_btn.setBackgroundColor(Color.rgb(220, 20, 100))
+            wrong_btn.setBackgroundResource(R.drawable.wrong_answer)
             i++
         }
         changeCorrectButtons()
         if(last)
         {
             index=0
-            next_button.text="Zakończ quiz"
+            next_button.text="Finish Quiz!"
             next_button.setOnClickListener(View.OnClickListener { view ->
                 goToSummary(view)})
             answers_checked.clear()
         }
         else
         {
-            next_button.text="Następne pytanie"
+            next_button.text="Next question"
             next_button.setOnClickListener(View.OnClickListener { view ->
                 goNext(view)})
         }
