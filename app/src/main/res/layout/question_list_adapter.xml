@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:layout_gravity="top"
-    android:layout_marginLeft="50dp"
-    android:layout_marginRight="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
     android:layout_marginBottom="10dp"
-    android:background="@drawable/content_background"
-    app:cardBackgroundColor="@color/dark_background">
+    app:cardBackgroundColor="@android:color/transparent">
 
     <TextView
         android:id="@+id/q_list_adapter_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/input_text"
-        android:paddingStart="10dp"
+        android:fontFamily="casual"
         android:paddingLeft="10dp"
+        android:textColor="@color/light_green"
         android:textSize="24sp" />
 
 

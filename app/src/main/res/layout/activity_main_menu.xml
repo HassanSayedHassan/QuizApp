@@ -26,7 +26,7 @@
         android:id="@+id/button2"
         android:layout_width="310dp"
         android:layout_height="60dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rounded_button"
         android:onClick="openQuestionsSetsActivity"
         android:text="@string/main_menu_button_zestawy"
@@ -41,7 +41,7 @@
         android:id="@+id/button3"
         android:layout_width="310dp"
         android:layout_height="60dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rounded_button"
         android:text="@string/main_menu_button_ustawienia"
 
