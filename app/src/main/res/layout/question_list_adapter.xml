@@ -16,8 +16,10 @@
         android:background="@drawable/input_text"
         android:fontFamily="casual"
         android:paddingLeft="10dp"
+        android:gravity="center_vertical"
         android:textColor="@color/light_green"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textAlignment="center"/>
 
 
 </androidx.cardview.widget.CardView>

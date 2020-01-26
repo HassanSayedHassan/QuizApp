@@ -30,9 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/input_text"
+            android:fontFamily="casual"
             android:hint="@string/create_question_activity_question_content_hint"
             android:textColor="@color/light_green"
-            android:textColorHint="@color/light_green" />
+            android:textColorHint="@color/light_green"
+            android:paddingLeft="10sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
     <Button

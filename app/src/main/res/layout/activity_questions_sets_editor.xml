@@ -32,9 +32,12 @@
             android:id="@+id/create_questions_sets_qs_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-
+            android:textColor="@color/light_green"
             android:background="@drawable/input_text"
-            android:hint="@string/name_hint" />
+            android:fontFamily="casual"
+            android:paddingLeft="10dp"
+            android:hint="@string/name_hint"
+            android:textSize="17sp"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
