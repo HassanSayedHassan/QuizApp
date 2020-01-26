@@ -14,11 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".QuestionsSetPlayerActivity"></activity>
-        <activity android:name=".QuestionEditorActivity" />
-        <activity android:name=".QuestionsSetsEditorActivity" />
-        <activity android:name=".QuestionsListActivity" />
-        <activity android:name=".QuestionsSetsActivity" />
-        <activity android:name=".SelectQuestionsSetActivity" />
+        <activity android:name=".QuestionEditorActivity"
+            android:label="@string/question_editor_label"/>
+        <activity android:name=".QuestionsSetsEditorActivity"
+            android:label="@string/editor_label"/>
+        <activity android:name=".QuestionsListActivity"
+            />
+        <activity android:name=".QuestionsSetsActivity"
+            android:label="@string/questions_sets_list_label"/>
+        <activity android:name=".SelectQuestionsSetActivity"
+            android:label="@string/player_activity_label"/>
         <activity android:name=".MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

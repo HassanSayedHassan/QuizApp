@@ -6,7 +6,8 @@
     android:background="@drawable/background_gradient"
     android:layout_height="match_parent"
     tools:context=".QuestionsSetListFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
 
     <FrameLayout
@@ -21,7 +22,8 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
             android:id="@+id/questions_sets_fragment_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,11 +31,31 @@
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/add_circle_48"
-            app:backgroundTint="@color/colorPrimary"
-            app:fabSize="normal" />
+            app:fab_addButtonColorNormal="@color/colorPrimary"
+            app:fab_addButtonSize="normal"
+            app:fab_labelsPosition="left"
+            app:fab_labelStyle="@style/menu_labels_style"
+            >
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                app:fab_colorNormal="@color/colorPrimary"
+                android:id="@+id/import_questions_set_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_attach_file_white_24dp"
+                app:fab_title="@string/import_questions_set_fab_label"
+                />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                app:fab_colorNormal="@color/colorPrimary"
+                android:id="@+id/create_questions_set_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_white_24dp"
+                app:fab_title="@string/create_questions_set_fab_label"
+                />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     </FrameLayout>
 

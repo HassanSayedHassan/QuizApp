@@ -26,7 +26,16 @@ open class Question(): Serializable
             ans[position] = answer
         }
     }
-    fun setCorrect(answerArray: SparseBooleanArray)
+
+    fun setCorrect(position: Int)
+    {
+        if(position>=0 && position < ans.size)
+        {
+            correct.add(position)
+        }
+    }
+
+    fun setCorrectArray(answerArray: SparseBooleanArray)
     {
         correct.clear()
         answerArray.forEach({k:Int,v:Boolean->if(v == true) correct.add(k)})

@@ -11,7 +11,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.getbase.floatingactionbutton.FloatingActionButton
+import com.getbase.floatingactionbutton.FloatingActionsMenu
 
 
 class QuestionsSetListFragment : Fragment() {
@@ -69,20 +70,27 @@ class QuestionsSetListFragment : Fragment() {
         super.onResume()
         if(this.id == R.id.select_questions_sets_fragment)
         {
-            activity?.findViewById<FloatingActionButton>(R.id.questions_sets_fragment_fab)?.hide()
+            val fabMenu = activity?.findViewById<FloatingActionsMenu>(R.id.questions_sets_fragment_fab)
+            (fabMenu?.parent as ViewGroup).removeView(fabMenu)
+
+
         }
         updateQuestionDatabase()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setFABOnClickListener { view -> createQuestionsSet() }
+
+        activity?.findViewById<FloatingActionButton>(R.id.create_questions_set_fab)?.setOnClickListener { view ->createQuestionsSet() }
+        activity?.findViewById<FloatingActionButton>(R.id.import_questions_set_fab)?.setOnClickListener { view ->importQuestionsSet() }
+
+
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
 
         when(item.itemId) {
-            R.id.add_qs -> {addQuestionsSet(); return true}
+            R.id.add_qs -> {importQuestionsSet(); return true}
             R.id.create_qs -> {createQuestionsSet(); return true}
             else -> return super.onOptionsItemSelected(item)
         }
@@ -131,7 +139,7 @@ class QuestionsSetListFragment : Fragment() {
 
     }
 
-    private fun addQuestionsSet() {
+    private fun importQuestionsSet() {
         val intent = Intent().setAction(Intent.ACTION_OPEN_DOCUMENT).setType("*/*")
         startActivityForResult(intent,SELECT_FILE)
     }
@@ -150,7 +158,7 @@ class QuestionsSetListFragment : Fragment() {
     fun setFABOnClickListener(onClickListener: ((v:View)->Unit)?)
     {
 
-        val fab = activity?.findViewById<FloatingActionButton>(R.id.questions_sets_fragment_fab)
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.import_questions_set_fab)
         fab?.setOnClickListener(onClickListener)
     }
     fun getQuestionsSet(index: Int):QuestionsSet

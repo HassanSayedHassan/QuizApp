@@ -30,8 +30,8 @@ class QuestionsSetDialogFragment : DialogFragment() {
 
         return activity?.let{
             val builder = AlertDialog.Builder(it)
-            val arr = Array<CharSequence>(2) {i -> if (i ==0) "Eksportuj" else "Usuń"}
-            builder.setTitle("Opcje")
+            val arr = Array<CharSequence>(2) {i -> if (i ==0) "Export" else "Remove"}
+            builder.setTitle("Options")
             builder.setItems(arr){dialog, which -> dialogAction(which)}
             builder.create()
 

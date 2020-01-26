@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 
 class QuestionsSetsEditorActivity : AppCompatActivity() {
@@ -20,7 +23,21 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions_sets_editor)
 
+        val editText = findViewById<EditText>(R.id.create_questions_sets_qs_name)
+        editText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val button8 = findViewById<Button>(R.id.button8)
+                button8.isEnabled = isTitleSet()
+            }
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
 
         if(intent.hasExtra("QS"))
             questionsSet = intent.getSerializableExtra("QS") as QuestionsSet
@@ -53,12 +70,21 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
 
 
 
+
     }
 
     override fun onPause() {
         super.onPause()
         val editText = findViewById<EditText>(R.id.create_questions_sets_qs_name)
         questionsSet?.name = editText.text.toString()
+    }
+
+    private fun isTitleSet():Boolean
+    {
+        val editText = findViewById<EditText>(R.id.create_questions_sets_qs_name)
+
+        return !editText.text.isEmpty()
+
     }
     fun getQuestionsSet():QuestionsSet?
     {

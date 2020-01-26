@@ -16,4 +16,10 @@
     <string name="create_questions_sets_save">Save</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="check_answers_button">Check</string>
+    <string name="import_questions_set_fab_label">Import questions set</string>
+    <string name="create_questions_set_fab_label">Create questions set</string>
+    <string name="questions_sets_list_label">Questions sets</string>
+    <string name="player_activity_label">Let\'s play!</string>
+    <string name="editor_label">Questions set editor</string>
+    <string name="question_editor_label">Question editor</string>
 </resources>

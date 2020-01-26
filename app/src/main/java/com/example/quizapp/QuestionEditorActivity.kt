@@ -12,6 +12,7 @@ import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.core.util.forEach
@@ -97,6 +98,22 @@ class QuestionEditorActivity : AppCompatActivity() {
 
         }
 
+        val editText = findViewById<EditText>(R.id.question_editor_question_content)
+        editText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val button7 = findViewById<Button>(R.id.button7)
+                button7.isEnabled = isContentSet()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+
         viewManager = LinearLayoutManager(this)
         viewAdapter = AnswersListAdapter(question.ans)
         recyclerView = findViewById<RecyclerView>(R.id.answerws_list_recycler_view)
@@ -116,6 +133,14 @@ class QuestionEditorActivity : AppCompatActivity() {
         editText.setText(question.content)
     }
 
+    private fun isContentSet():Boolean
+    {
+        val editText = findViewById<EditText>(R.id.question_editor_question_content)
+
+        return !editText.text.isEmpty()
+
+    }
+
     fun createEmptyAnswer(view: View)
     {
         question.addAnswer("")
@@ -128,7 +153,7 @@ class QuestionEditorActivity : AppCompatActivity() {
         val content = findViewById<TextInputEditText>(R.id.question_editor_question_content).text.toString()
         question.content = content
         checkBoxArray.forEach{i,b ->Log.d(i.toString(),b.toString())}
-        question.setCorrect(checkBoxArray)
+        question.setCorrectArray(checkBoxArray)
         checkBoxArray.clear()
         val intent = Intent().putExtra("Q",question)
         setResult(RESULT_OK, intent)

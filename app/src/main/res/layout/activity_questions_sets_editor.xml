@@ -79,7 +79,8 @@
             android:textSize="20sp"
             android:background="@drawable/rounded_button"
             android:onClick="saveQuestionsSet"
-            android:text="@string/create_questions_sets_save" />
+            android:text="@string/create_questions_sets_save"
+            />
 
     </LinearLayout>
     </ScrollView>
