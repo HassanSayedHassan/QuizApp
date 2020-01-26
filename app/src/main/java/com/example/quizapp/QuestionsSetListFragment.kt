@@ -71,7 +71,8 @@ class QuestionsSetListFragment : Fragment() {
         if(this.id == R.id.select_questions_sets_fragment)
         {
             val fabMenu = activity?.findViewById<FloatingActionsMenu>(R.id.questions_sets_fragment_fab)
-            (fabMenu?.parent as ViewGroup).removeView(fabMenu)
+            if(fabMenu!=null)
+                (fabMenu?.parent as ViewGroup).removeView(fabMenu)
 
 
         }
