@@ -37,10 +37,7 @@
             android:paddingLeft="10sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+
 
     <Button
         android:id="@+id/button6"
@@ -55,6 +52,13 @@
         android:textSize="20sp" />
 
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/answerws_list_recycler_view"
                 android:layout_width="match_parent"
@@ -66,11 +70,14 @@
                 android:layout_width="match_parent"
                 android:textColor="#ffFFFFFF"
                 android:textSize="20sp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_button"
                 android:onClick="saveQuestion"
                 android:text="@string/create_question_activity_save_question"
-                android:height="45dp"/>
-        </LinearLayout>
+                android:height="45dp"
+                android:minHeight="45dp"/>
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
