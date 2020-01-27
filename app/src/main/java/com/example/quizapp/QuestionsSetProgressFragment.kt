@@ -76,7 +76,7 @@ class QuestionsSetProgressFragment : Fragment() {
         else
         {
 
-            best_tv.setText("Best Score: "+progress?.correctAnswers)
+            best_tv.setText("Best Score: "+progress?.correctAnswers+"/"+qs.size())
 
             val incrementedAttempts = progress.attempts + 1
             attempts_tv.setText("Attempt: "+ incrementedAttempts)

@@ -34,7 +34,7 @@ class QuestionsSetListFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         if(this.id == R.id.questions_sets_fragment) {
-            setHasOptionsMenu(true)
+            setHasOptionsMenu(false)
 
         }
 

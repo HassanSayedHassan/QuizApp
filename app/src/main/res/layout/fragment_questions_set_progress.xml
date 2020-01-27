@@ -9,69 +9,66 @@
     tools:context=".QuestionsSetProgressFragment">
 
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/category_tv"
+            android:layout_width="424dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#B4E7D9"
+            android:textSize="45sp"
+            app:fontFamily="casual"
+            android:layout_marginTop="100dp"/>
+
+        <TextView
+            android:id="@+id/best_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#B4E7D9"
+            android:textSize="45sp"
+            app:fontFamily="casual" />
+
+        <TextView
+            android:id="@+id/attempts_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#B4E7D9"
+            android:textSize="45sp"
+            app:fontFamily="casual"
+            android:layout_marginBottom="100dp"/>
+
+        <!--
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_weight="0" />!-->
 
-            <TextView
-                android:id="@+id/category_tv"
-                android:layout_width="424dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:textColor="#B4E7D9"
-                android:textSize="45sp"
-                app:fontFamily="casual" />
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="10dp"
+            android:layout_weight="0"
+            android:background="@drawable/rounded_button"
+            android:onClick="goToPlayer"
 
-            <TextView
-                android:id="@+id/best_tv"
-                android:layout_width="match_parent"
-                android:layout_height="113dp"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:textColor="#B4E7D9"
-                android:textSize="45sp"
-                app:fontFamily="casual" />
-
-            <TextView
-                android:id="@+id/attempts_tv"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:textColor="#B4E7D9"
-                android:textSize="45sp"
-                app:fontFamily="casual" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="119dp"
-                android:layout_weight="0" />
-
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_gravity="bottom"
-                android:layout_margin="10dp"
-                android:layout_weight="0"
-                android:background="@drawable/rounded_button"
-                android:onClick="goToPlayer"
-
-                android:text="Start Quiz!"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp" />
-        </LinearLayout>
-    </ScrollView>
+            android:text="Start Quiz!"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </LinearLayout>

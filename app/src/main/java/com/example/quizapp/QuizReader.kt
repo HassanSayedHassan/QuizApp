@@ -45,6 +45,7 @@ class QuizReader {
 
         fun saveStringAsFileInFilesDir(context: Context, name: String, string: String) {
 
+            val fileName = "$name.qaf"
             val directory = File(context.filesDir, QS_SUBFOLDER_NAME)
             if(!directory.exists()) {
                 Log.d("mkdir",directory.path )
@@ -62,14 +63,14 @@ class QuizReader {
                 try {
                     val os = context.contentResolver.openOutputStream(uri)
                     if (os != null) {
-                        Log.d("string", string)
+                        //Log.d("string", string)
                         val ow = OutputStreamWriter(os)
                         ow.write(string)
                         ow.close()
                         os.close()
                     }
                 } catch (exception: Exception) {
-                    Log.d("Exception", "Could't write file")
+                    //Log.d("Exception", "Could't write file")
                 }
 
             }
