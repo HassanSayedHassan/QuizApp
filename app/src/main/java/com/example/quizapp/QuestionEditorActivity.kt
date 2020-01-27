@@ -16,6 +16,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.core.util.forEach
+import androidx.core.util.remove
 import androidx.core.util.set
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,7 +36,9 @@ class QuestionEditorActivity : AppCompatActivity() {
     inner class AnswersListAdapter(private val answersList: MutableList<String>): RecyclerView.Adapter<AnswersListAdapter.ViewHolder>()
     {
 
-        inner class ViewHolder(val view: View, val editText: EditText, val checkBox: CheckBox, val editTextListener: EditTextListener): RecyclerView.ViewHolder(view)
+        inner class ViewHolder(val view: View, val editText: EditText,
+                               val checkBox: CheckBox, val editTextListener: EditTextListener,
+                               val button: Button): RecyclerView.ViewHolder(view)
 
         inner class EditTextListener : TextWatcher
         {
@@ -66,7 +69,8 @@ class QuestionEditorActivity : AppCompatActivity() {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.answers_list_adapter_text_view, parent, false) as TextInputLayout
             val editText = view.findViewById<EditText>(R.id.edit_text)
             val checkBox = view.findViewById<CheckBox>(R.id.checkBox)
-            return ViewHolder(view, editText, checkBox, EditTextListener())
+            val button = view.findViewById<Button>(R.id.button12)
+            return ViewHolder(view, editText, checkBox, EditTextListener(),button)
         }
 
         override fun onBindViewHolder(holder: AnswersListAdapter.ViewHolder, position: Int) {
@@ -76,6 +80,7 @@ class QuestionEditorActivity : AppCompatActivity() {
             holder.checkBox.isChecked = checkBoxArray[position]
             holder.checkBox.setOnClickListener{view -> checkBoxArray[position]=!checkBoxArray[position]
                 Log.d(position.toString(),checkBoxArray[position].toString())}
+            holder.button.setOnClickListener{view -> removeAnswer(position)}
 
         }
 
@@ -134,6 +139,15 @@ class QuestionEditorActivity : AppCompatActivity() {
         editText.setText(question.content)
     }
 
+
+    private fun removeAnswer(position: Int)
+    {
+        if(position>=0 && position < question.ans.size) {
+            checkBoxArray.set(position,false )
+            question.ans.removeAt(position)
+            viewAdapter.notifyDataSetChanged()
+        }
+    }
 
     private fun isAnswersCorrectFormat():Boolean
     {
