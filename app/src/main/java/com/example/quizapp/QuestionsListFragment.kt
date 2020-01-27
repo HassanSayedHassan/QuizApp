@@ -74,7 +74,7 @@ class QuestionsListFragment : Fragment() {
 
     }
 
-    fun updateDataSet(questionsSet: QuestionsSet) {
+    fun updateDataSet(questionsSet: QuestionsSet?) {
         viewAdapter.setQuestionsSet(questionsSet)
         viewAdapter.notifyDataSetChanged()
     }
@@ -83,6 +83,11 @@ class QuestionsListFragment : Fragment() {
     {
         val adapter = viewAdapter
         adapter.setOnClickListener(onClickListener)
+    }
+
+    fun setOnLongClickListener(onLongClickListener: QuestionsListAdapter.OnLongClickListener)
+    {
+        viewAdapter.setOnLongClickListener(onLongClickListener)
     }
 
 

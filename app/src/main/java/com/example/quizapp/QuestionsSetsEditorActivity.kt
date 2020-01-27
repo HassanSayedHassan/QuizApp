@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 
 class QuestionsSetsEditorActivity : AppCompatActivity() {
 
@@ -21,13 +22,13 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_questions_sets_editor)
 
         val editText = findViewById<EditText>(R.id.create_questions_sets_qs_name)
         editText.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val button8 = findViewById<Button>(R.id.button8)
-                button8.isEnabled = isTitleSet()
+                controlSaveButtonState()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -67,6 +68,28 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
                     openQuestionEditor(index)
                 }
             })
+        fragment.setOnLongClickListener(
+            object : QuestionsListAdapter.OnLongClickListener{
+                override fun onItemClick(index: Int) {
+
+                    if(questionsSet!=null) {
+                        val builder = AlertDialog.Builder(this@QuestionsSetsEditorActivity)
+                        builder.setTitle("Options")
+                            .setMessage("Remove question?")
+                            .setPositiveButton("Yes"){dialog, which ->
+                                removeQuestion(index)
+                                fragment.updateDataSet(questionsSet)
+                                controlSaveButtonState()
+                            }
+                        builder.setNegativeButton("No"){_,_ -> }
+
+                        val dialog = builder.create()
+                        dialog.show()
+
+                    }
+                }
+            }
+        )
 
 
 
@@ -86,6 +109,21 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
         return !editText.text.isEmpty()
 
     }
+
+    private fun isAnyQuestionAdded():Boolean
+    {
+        return compareValues(questionsSet?.size(),0) > 0
+    }
+
+    private fun isReadyToSave():Boolean{
+        return isTitleSet() && isAnyQuestionAdded()
+    }
+
+    private fun controlSaveButtonState()
+    {
+        val button8 = findViewById<Button>(R.id.button8)
+        button8.isEnabled = isReadyToSave()
+    }
     fun getQuestionsSet():QuestionsSet?
     {
         return questionsSet
@@ -99,6 +137,11 @@ class QuestionsSetsEditorActivity : AppCompatActivity() {
     {
         val intent = Intent(this,QuestionEditorActivity::class.java).putExtra("Q", questionsSet?.getQuestion(index))
         startActivityForResult(intent,QUESTION)
+    }
+
+    private fun removeQuestion(index: Int)
+    {
+        questionsSet?.removeAt(index)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)

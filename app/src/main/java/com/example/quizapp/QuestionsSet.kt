@@ -46,4 +46,9 @@ class QuestionsSet() :Serializable
             questions.set(index,question)
         }
     }
+    fun removeAt(index: Int)
+    {
+        if(index >= 0 && index < questions.size)
+            questions.removeAt(index)
+    }
 }

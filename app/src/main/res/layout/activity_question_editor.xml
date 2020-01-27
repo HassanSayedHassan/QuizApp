@@ -37,6 +37,11 @@
             android:paddingLeft="10sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
@@ -49,20 +54,23 @@
         android:textColor="#ffFFFFFF"
         android:textSize="20sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/answerws_list_recycler_view"
-        android:layout_width="match_parent"
 
-        android:layout_height="wrap_content" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/answerws_list_recycler_view"
+                android:layout_width="match_parent"
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="match_parent"
-        android:textColor="#ffFFFFFF"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button"
-        android:onClick="saveQuestion"
-        android:text="@string/create_question_activity_save_question" />
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:textColor="#ffFFFFFF"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_button"
+                android:onClick="saveQuestion"
+                android:text="@string/create_question_activity_save_question"
+                android:height="45dp"/>
+        </LinearLayout>
     </LinearLayout>

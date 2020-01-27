@@ -57,6 +57,7 @@ class QuestionEditorActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 answersList[position] = s.toString()
                 Log.d("text changed"+position.toString(),s.toString())
+                controlSaveButton()
             }
 
         }
@@ -101,8 +102,8 @@ class QuestionEditorActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.question_editor_question_content)
         editText.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val button7 = findViewById<Button>(R.id.button7)
-                button7.isEnabled = isContentSet()
+                controlSaveButton()
+
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -133,18 +134,37 @@ class QuestionEditorActivity : AppCompatActivity() {
         editText.setText(question.content)
     }
 
+
+    private fun isAnswersCorrectFormat():Boolean
+    {
+        val questionsNotEmpty = question.ans.fold(true){acc,s->acc && s.isNotEmpty()}
+        Log.d("qne", questionsNotEmpty.toString())
+        return question.ans.size > 0 && questionsNotEmpty
+     }
     private fun isContentSet():Boolean
     {
         val editText = findViewById<EditText>(R.id.question_editor_question_content)
 
-        return !editText.text.isEmpty()
+        return editText.text.isNotEmpty()
 
     }
 
+    private fun isReadyToSave():Boolean
+    {
+        return isContentSet() && isAnswersCorrectFormat()
+
+    }
+
+    private fun controlSaveButton()
+    {
+        val button7 = findViewById<Button>(R.id.button7)
+        button7.isEnabled = isReadyToSave()
+    }
     fun createEmptyAnswer(view: View)
     {
         question.addAnswer("")
         viewAdapter.notifyDataSetChanged()
+        controlSaveButton()
     }
 
     fun saveQuestion(view: View)

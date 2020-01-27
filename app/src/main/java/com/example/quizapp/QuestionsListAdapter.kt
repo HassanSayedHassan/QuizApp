@@ -6,12 +6,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class QuestionsListAdapter(private var questionsSet :QuestionsSet):
+class QuestionsListAdapter(private var questionsSet :QuestionsSet?):
     RecyclerView.Adapter<QuestionsListAdapter.ViewHolder>() {
 
     private var onClickListener: OnClickListener? = null
+    private var onLongClickListener: OnLongClickListener? = null
 
     interface OnClickListener
+    {
+        fun onItemClick(index: Int)
+    }
+    interface OnLongClickListener
     {
         fun onItemClick(index: Int)
     }
@@ -25,6 +30,12 @@ class QuestionsListAdapter(private var questionsSet :QuestionsSet):
         {
             textView.setOnClickListener{view -> onClickListener?.onItemClick(index)}
         }
+
+        fun bindOnLongClickListener(onLongClickListener: OnLongClickListener?, index: Int)
+        {
+            textView.setOnLongClickListener{view -> onLongClickListener?.onItemClick(index); true }
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,17 +46,18 @@ class QuestionsListAdapter(private var questionsSet :QuestionsSet):
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
-        holder.textView.text = questionsSet.getQuestion(position).content
+        holder.textView.text = questionsSet?.getQuestion(position)?.content
         holder.bindOnClickListener(onClickListener,position)
+        holder.bindOnLongClickListener(onLongClickListener,position)
 
     }
 
     override fun getItemCount(): Int {
 
-            return questionsSet.size()
+            return questionsSet?.size()?:0
     }
 
-    fun setQuestionsSet(questionsSet: QuestionsSet)
+    fun setQuestionsSet(questionsSet: QuestionsSet?)
     {
         this.questionsSet=questionsSet
     }
@@ -53,5 +65,9 @@ class QuestionsListAdapter(private var questionsSet :QuestionsSet):
     fun setOnClickListener(onClickListener: OnClickListener)
     {
         this.onClickListener = onClickListener
+    }
+    fun setOnLongClickListener(onLongClickListener: OnLongClickListener)
+    {
+        this.onLongClickListener = onLongClickListener
     }
 }
