@@ -146,6 +146,7 @@ class QuestionEditorActivity : AppCompatActivity() {
             checkBoxArray.set(position,false )
             question.ans.removeAt(position)
             viewAdapter.notifyDataSetChanged()
+            controlSaveButton()
         }
     }
 
