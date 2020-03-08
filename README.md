@@ -1,9 +1,10 @@
 # QuizApp
-## Android app for creating, sharing and playing quizes
+## Android app for creating, sharing and playing quizzes
 
 Simple quiz app written in Kotlin language.
 It allows user to:
-* Create quizes
-* Save them in Smartphone's memory
-* Play quizes
-* Chech simple statistics
+* Create quizzes
+* Save them in Smartphone's memory as JSON files
+* Import quizzes from JSON files
+* Play quizzes
+* Check simple statistics
